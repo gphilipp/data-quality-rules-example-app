@@ -1,0 +1,34 @@
+### Register the schema with the Data Quality Rules
+POST {{host}}/subjects/memberships-value/versions
+Authorization: Basic {{username}} {{password}}
+Content-Type: application/vnd.schemaregistry.v1+json
+
+{
+  "schemaType": "AVRO",
+  "schema": "{ \"type\": \"record\", \"name\": \"Membership\", \"fields\": [ { \"name\": \"start_date\", \"type\": { \"type\": \"int\", \"logicalType\": \"date\" } }, { \"name\": \"end_date\", \"type\": { \"type\": \"int\", \"logicalType\": \"date\" } }, { \"name\": \"email\", \"type\": \"string\" }, { \"name\": \"ssn\", \"type\": \"string\" } ] }",
+  "metadata": {
+    "properties": {
+      "owner": "Gilles Philippart",
+      "email": "gphilippart@confluent.io"
+    }
+  },
+  "ruleSet": {
+    "domainRules": [
+      {
+        "name": "checkSsnLen",
+        "kind": "CONDITION",
+        "type": "CEL",
+        "mode": "WRITE",
+        "expr": "message.ssn.matches(r\"\\d{3}-\\d{2}-\\d{4}\")",
+        "onFailure": "DLQ",
+        "params": {
+          "dlq.topic": "bad_memberships"
+        }
+      }
+    ]
+  }
+}
+
+### Retrieve a specific subject version
+GET {{host}}/subjects/memberships-value/versions/5
+Authorization: Basic {{username}} {{password}}
