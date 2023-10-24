@@ -16,8 +16,6 @@ import java.util.Properties;
 
 public class DataQualityRulesExampleApp {
 
-    private static final String TOPIC = "memberships";
-
     public static void main(String[] args) throws IOException {
         final Properties properties = loadProps();
         KafkaProducer<String, Membership> producer = new KafkaProducer<>(properties);
@@ -27,7 +25,7 @@ public class DataQualityRulesExampleApp {
                 .setStartDate(LocalDate.of(2023, Month.JANUARY, 1))
                 .setEndDate(LocalDate.of(1970, Month.JANUARY, 1))
                 .build();
-        ProducerRecord<String, Membership> record = new ProducerRecord<>(TOPIC, membership);
+        ProducerRecord<String, Membership> record = new ProducerRecord<>("memberships", membership);
         producer.send(record, (recordMetadata, e) -> {
             if (e == null) {
                 System.out.println("Record written to partition " + recordMetadata.partition() +
