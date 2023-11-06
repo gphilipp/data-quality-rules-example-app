@@ -1,0 +1,17 @@
+{
+  "ruleSet": {
+    "domainRules": [
+      {
+        "name": "checkSsnLen",
+        "kind": "CONDITION",
+        "type": "CEL",
+        "mode": "WRITE",
+        "expr": "message.ssn.matches(r\"\\d{3}-\\d{2}-\\d{4}\")",
+        "onFailure": "DLQ",
+        "params": {
+          "dlq.topic": "bad_memberships"
+        }
+      }
+    ]
+  }
+}
