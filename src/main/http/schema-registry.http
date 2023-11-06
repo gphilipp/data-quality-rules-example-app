@@ -29,6 +29,12 @@ Content-Type: application/vnd.schemaregistry.v1+json
   }
 }
 
+
+
+
+
+
+
 ### Retrieve a specific subject version
 GET {{host}}/subjects/memberships-value/versions/5
 Authorization: Basic {{username}} {{password}}
