@@ -2,27 +2,9 @@
   "type": "record",
   "name": "Membership",
   "fields": [
-    {
-      "name": "start_date",
-      "type": {
-        "type": "int",
-        "logicalType": "date"
-      }
-    },
-    {
-      "name": "end_date",
-      "type": {
-        "type": "int",
-        "logicalType": "date"
-      }
-    },
-    {
-      "name": "email",
-      "type": "string"
-    },
-    {
-      "name": "ssn",
-      "type": "string"
-    }
+    {"name": "start_date", "type": {"type": "int", "logicalType": "date"}},
+    {"name": "end_date", "type": {"type": "int", "logicalType": "date"}},
+    {"name": "email", "type": "string"},
+    {"name": "ssn", "type": "string"}
   ]
 }
