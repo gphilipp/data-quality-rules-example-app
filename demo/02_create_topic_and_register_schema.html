@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+<div id="demo-container"/>
+</body>
+
+<head>
+    <title>Title of the document</title>
+
+    <!--Glorious Demo-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glorious/demo/dist/gdemo.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@glorious/demo/dist/gdemo.min.js"></script>
+
+    <!-- Prism -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs"></script>
+
+    <!-- Prism Language-Specific -->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-clike.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-json.js"></script>
+
+    <!-- Prism Theme-Specific -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css">
+    <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.5.0/prism-atom-dark.min.css">-->
+    <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.5.0/prism-dracula.min.css">-->
+
+    <script>
+        const demo = new GDemo('#demo-container');
+        demo
+            .openApp('terminal',
+                {
+                    minHeight: '350px',
+                    windowTitle: 'terminal',
+                    onCompleteDelay: 1000,
+                    promptString: '$'
+                })
+            .command('confluent kafka topic create memberships', {onCompleteDelay: 500})
+            .respond('Created topic "memberships".')
+            .command('confluent schema-registry schema create --subject memberships-value --schema membership.avsc', {onCompleteDelay: 500})
+            .respond('Successfully registered schema with ID "100013".')
+            .command('')
+            .end();
+    </script>
+</head>
+
+</html>

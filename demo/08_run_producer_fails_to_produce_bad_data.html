@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+<div id="demo-container"/>
+</body>
+
+<head>
+    <title>Title of the document</title>
+
+    <!--Glorious Demo-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glorious/demo/dist/gdemo.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@glorious/demo/dist/gdemo.min.js"></script>
+
+    <!-- Prism -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs"></script>
+
+    <!-- Prism Language-Specific -->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-clike.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-java.js"></script>
+
+    <!-- Prism Theme-Specific -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css">
+    <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.5.0/prism-atom-dark.min.css">-->
+    <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.5.0/prism-dracula.min.css">-->
+
+    <script>
+        const demo = new GDemo('#demo-container');
+
+        demo
+            .openApp('terminal', {minHeight: '350px', promptString: '$'})
+            .command('java MembershipProducer', {onCompleteDelay: 500})
+            .respond("Caused by: io.confluent.kafka.schemaregistry.rules.RuleException: Expr failed: 'message.ssn.matches(r\"\\d{3}-\\d{2}-\\d{4}\")'\n", {onCompleteDelay: 500})
+            .command('')
+            .end();
+    </script>
+</head>
+
+</html>
