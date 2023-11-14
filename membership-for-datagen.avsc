@@ -1,0 +1,56 @@
+{
+  "type": "record",
+  "name": "Membership",
+  "fields": [
+    {
+      "name": "start_date",
+      "type": {
+        "type": "int",
+        "logicalType": "date"
+      }
+    },
+    {
+      "name": "end_date",
+      "type": {
+        "type": "int",
+        "logicalType": "date"
+      }
+    },
+    {
+      "name": "email",
+      "type": "string"
+    },
+    {
+      "name": "ssn",
+      "type": "string"
+    }
+  ],
+  "arg.properties": {
+    "options": [
+      {
+        "start_date": 12374,
+        "end_date": 12390,
+        "email": "john@doe.com",
+        "ssn": "999-99-9999"
+      },
+      {
+        "start_date": 12374,
+        "end_date": 12390,
+        "email": "jane@doe.com",
+        "ssn": "888-88-8888"
+      },
+      {
+        "start_date": 12410,
+        "end_date": 12591,
+        "email": "ken@doe.com",
+        "ssn": "777-77-7777"
+      },
+      {
+        "start_date": 12504,
+        "end_date": 12620,
+        "email": "rose@doe.com",
+        "ssn": "666-66-6666"
+      }
+    ]
+  }
+}

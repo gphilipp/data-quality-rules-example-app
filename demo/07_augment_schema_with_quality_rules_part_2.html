@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+<div id="demo-container"/>
+</body>
+
+<head>
+    <title>Title of the document</title>
+
+    <!--Glorious Demo-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glorious/demo/dist/gdemo.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@glorious/demo/dist/gdemo.min.js"></script>
+
+    <!-- Prism -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs"></script>
+
+    <!-- Prism Language-Specific -->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-clike.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-json.js"></script>
+
+    <!-- Prism Theme-Specific -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css">
+    <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.5.0/prism-atom-dark.min.css">-->
+    <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.5.0/prism-dracula.min.css">-->
+
+    <script>
+        const demo = new GDemo('#demo-container');
+
+        code =`
+$ curl https://*******.us-east-2.aws.confluent.cloud/subjects/memberships-value/versions \\
+  --user "*****:**********" \\
+  --json @domain-validation-rules.json
+`
+
+        demo
+            .openApp('terminal',
+                {
+                    minHeight: '350px',
+                    windowTitle: 'terminal',
+                    onCompleteDelay: 1000,
+                    promptString: '$'
+                })
+            .command('confluent schema-registry cluster describe --output json | jq .endpoint_url', {onCompleteDelay: 500})
+            .respond('"https://*******.us-east-2.aws.confluent.cloud"')
+            .command('')
+            .respond(code)
+            .command('')
+            .end();
+    </script>
+</head>
+
+</html>
