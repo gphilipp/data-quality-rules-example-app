@@ -27,26 +27,37 @@
     <script>
         const demo = new GDemo('#demo-container');
 
-        code =`
-$ curl https://*******.us-east-2.aws.confluent.cloud/subjects/memberships-value/versions \\
-  --user "*****:**********" \\
-  --json @domain-validation-rules.json
+        code =`curl https://*******.us-east-2.aws.confluent.cloud/subjects/memberships-value/versions --user "*****:*****" --json @domain-validation-rules.json
 `
-
         demo
-            .openApp('terminal',
-                {
-                    minHeight: '350px',
-                    windowTitle: 'terminal',
-                    onCompleteDelay: 1000,
-                    promptString: '$'
-                })
+            .openApp('terminal', {
+                minHeight: '350px',
+                windowTitle: 'terminal',
+                onCompleteDelay: 1000,
+                promptString: '$'
+            })
             .command('confluent schema-registry cluster describe --output json | jq .endpoint_url', {onCompleteDelay: 500})
             .respond('"https://*******.us-east-2.aws.confluent.cloud"')
-            .command('')
-            .respond(code)
-            .command('')
+            .command('curl \\')
+            .command('https://*******.us-east-2.aws.confluent.cloud/subjects/memberships-value/versions \\', { promptString: '&nbsp' })
+            .command('--user "*****:*****" \\')
+            .command('--json @domain-validation-rules.json', { onCompleteDelay: 500 })
+            .command('', { promptString: '$' })
             .end();
+
+        // demo
+        //     .openApp('terminal',
+        //         {
+        //             minHeight: '350px',
+        //             windowTitle: 'terminal',
+        //             onCompleteDelay: 1000,
+        //             promptString: '$'
+        //         })
+        //     .command('confluent schema-registry cluster describe --output json | jq .endpoint_url', {onCompleteDelay: 500})
+        //     .respond('"https://*******.us-east-2.aws.confluent.cloud"')
+        //     .command(code)
+        //     .command('')
+        //     .end();
     </script>
 </head>
 
